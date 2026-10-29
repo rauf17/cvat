@@ -23,5 +23,13 @@
     .cvat-task-analytics-empty {
         margin-top: 50px;
     }
-}
 
+    .cvat-task-analytics-error {
+        margin-top: 20px;
+        max-width: 800px;
+
+        .cvat-task-analytics-retry-button {
+            margin-top: 12px;
+        }
+    }
+}
