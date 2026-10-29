@@ -5,6 +5,7 @@
 
 import React from 'react';
 import { useHistory } from 'react-router';
+import { Link } from 'react-router-dom';
 import { Row, Col } from 'antd/lib/grid';
 import { LeftOutlined, MoreOutlined } from '@ant-design/icons';
 import Button from 'antd/lib/button';
@@ -48,6 +49,15 @@ export default function DetailsComponent(props: DetailsComponentProps): JSX.Elem
                 )}
             </Col>
             <Col>
+                <Link to={`/tasks/${taskInstance.id}/annotation-counts`}>
+                    <Button
+                        size='middle'
+                        className='cvat-task-page-annotation-counts-button'
+                        style={{ marginRight: 8 }}
+                    >
+                        Annotation counts
+                    </Button>
+                </Link>
                 <TaskActionsComponent
                     taskInstance={taskInstance}
                     onUpdateTask={onUpdateTask}

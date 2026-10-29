@@ -1,0 +1,35 @@
+// Copyright (C) CVAT.ai Corporation
+//
+// SPDX-License-Identifier: MIT
+
+.cvat-task-analytics-page {
+    padding: 20px;
+    height: 100%;
+    overflow-y: auto;
+
+    .cvat-task-analytics-header {
+        margin-bottom: 24px;
+    }
+
+    .cvat-task-analytics-chart-container {
+        position: relative;
+        height: 500px;
+        width: 100%;
+        background: #fff;
+        padding: 20px;
+        border-radius: 4px;
+    }
+
+    .cvat-task-analytics-empty {
+        margin-top: 50px;
+    }
+
+    .cvat-task-analytics-error {
+        margin-top: 20px;
+        max-width: 800px;
+
+        .cvat-task-analytics-retry-button {
+            margin-top: 12px;
+        }
+    }
+}
