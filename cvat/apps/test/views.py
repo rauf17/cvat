@@ -9,11 +9,18 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from cvat.apps.engine.models import LabeledShape, Task
+from cvat.apps.engine.permissions import TaskPermission
 
 
 class TaskClassCountsView(APIView):
+    iam_permission_class = TaskPermission
+    detail = True
+    action = "retrieve"
+    basename = "tasks"
+
     def get(self, request: Request, task_id: int) -> Response:
-        get_object_or_404(Task, pk=task_id)
+        task = get_object_or_404(Task.objects.select_related("organization"), pk=task_id)
+        self.check_object_permissions(request, task)
 
         shape_counts = (
             LabeledShape.objects.filter(
@@ -34,4 +41,3 @@ class TaskClassCountsView(APIView):
                 ],
             }
         )
-
