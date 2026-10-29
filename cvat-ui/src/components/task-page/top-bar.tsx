@@ -49,13 +49,13 @@ export default function DetailsComponent(props: DetailsComponentProps): JSX.Elem
                 )}
             </Col>
             <Col>
-                <Link to={`/tasks/${taskInstance.id}/analytics`}>
+                <Link to={`/tasks/${taskInstance.id}/annotation-counts`}>
                     <Button
                         size='middle'
-                        className='cvat-task-page-analytics-button'
+                        className='cvat-task-page-annotation-counts-button'
                         style={{ marginRight: 8 }}
                     >
-                        Analytics
+                        Annotation counts
                     </Button>
                 </Link>
                 <TaskActionsComponent

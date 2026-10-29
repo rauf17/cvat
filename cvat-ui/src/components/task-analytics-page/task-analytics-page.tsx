@@ -49,6 +49,10 @@ interface ClassCountsResponse {
     counts: ClassCount[];
 }
 
+interface AxiosResponse<T> {
+    data: T;
+}
+
 const core = getCore();
 
 export default function TaskAnalyticsPage(): JSX.Element {
@@ -63,15 +67,12 @@ export default function TaskAnalyticsPage(): JSX.Element {
         setCounts(null);
         setFetching(true);
 
-        core.server.request(
+        core.server.request<AxiosResponse<ClassCountsResponse>>(
             `${core.config.backendAPI}/annotation-analytics/tasks/${id}/class-counts`,
             { method: 'GET' },
-        ).then((response: unknown) => {
+        ).then((response: AxiosResponse<ClassCountsResponse>) => {
             if (!isMounted) return;
-            const res = response && typeof response === 'object' && 'data' in response ?
-                (response as { data: ClassCountsResponse }).data :
-                (response as ClassCountsResponse);
-            setCounts(res.counts || []);
+            setCounts(response.data.counts);
         }).catch((err: unknown) => {
             if (!isMounted) return;
             let errorMessage = '';
@@ -172,7 +173,7 @@ export default function TaskAnalyticsPage(): JSX.Element {
                 <Col>
                     <GoBackButton />
                     <Title level={3} style={{ display: 'inline', marginLeft: 16 }}>
-                        {`Task #${id} Analytics`}
+                        {`Task #${id} Annotation Counts`}
                     </Title>
                 </Col>
             </Row>
