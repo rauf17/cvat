@@ -28,6 +28,7 @@ Environment: Windows 10 Enterprise 19045, 16 GB RAM (WSL2 capped at 8 GB), Docke
 ### 2026-10-29
 - I first placed the UI page on CVAT's existing `/tasks/:id/analytics` route, then moved it to `/tasks/:id/annotation-counts` and restored the original route.
 - I missed the speed target. The query itself measured 131 ms in Postgres.
+- Submission slipped to the evening because the UI image build took about 36 minutes.
 
 ## Decision record
 
