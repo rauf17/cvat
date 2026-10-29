@@ -25,4 +25,12 @@ Environment: Windows 10 Enterprise 19045, 16 GB RAM (WSL2 capped at 8 GB), Docke
 
 ## Plan changes
 
-(Dated notes are added here when the plan changes, with the reason.)
+### 2026-10-29
+- I first placed the UI page on CVAT's existing `/tasks/:id/analytics` route, then moved it to `/tasks/:id/annotation-counts` and restored the original route.
+- I missed the speed target. The query itself measured 131 ms in Postgres.
+
+## Decision record
+
+- Approach taken: A plain DRF APIView doing one database-side GROUP BY, authorised through CVAT's OPA TaskPermission view scope, read on page load.
+- Approach rejected: Live updates over WebSocket (Django Channels).
+- What rejecting it cost: The chart does not update live, items 8 and 9 are undone.
